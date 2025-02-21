@@ -1,11 +1,12 @@
-"use client";
-import React, { forwardRef, useState } from "react";
-import { User } from "firebase/auth";
-import styles from "./styles.module.scss";
-import { ImageLoader } from "@/components";
-import { IMessage } from "@/types/chat.types";
-import { dateFormatter } from "@/utils/dateFormatter";
-import cn from "classnames";
+'use client';
+
+import { ImageLoader } from '@/components';
+import { IMessage } from '@/types/chat.types';
+import { dateFormatter } from '@/utils/dateFormatter';
+import cn from 'classnames';
+import { User } from 'firebase/auth';
+import React, { forwardRef, useState } from 'react';
+import styles from './styles.module.scss';
 
 interface IMessageItem {
   info: IMessage;
@@ -32,10 +33,7 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
   );
 
   return isOwner ? (
-    <div
-      className={cn(styles.messageItem, styles.owner)}
-      ref={ref as React.ForwardedRef<HTMLDivElement>}
-    >
+    <div className={cn(styles.messageItem, styles.owner)} ref={ref as React.ForwardedRef<HTMLDivElement>}>
       {file && photoSection()}
       <div className={cn(styles.dateContainer, styles.ownerDate)}>
         <div className={styles.text}>{text}</div>
@@ -43,15 +41,9 @@ const MessageItem = forwardRef(({ info, user }: IMessageItem, ref) => {
       </div>
     </div>
   ) : (
-    <div
-      className={styles.messageItem}
-      ref={ref as React.ForwardedRef<HTMLDivElement>}
-    >
-      <div
-        className={styles.leftSection}
-        style={{ flexDirection: file ? "column" : "row" }}
-      >
-        <img src={photo} alt="avatar" className={styles.avatar} />
+    <div className={styles.messageItem} ref={ref as React.ForwardedRef<HTMLDivElement>}>
+      <div className={styles.leftSection} style={{ flexDirection: file ? 'column' : 'row' }}>
+        <img src={photo} alt='avatar' className={styles.avatar} />
         <div>
           <div>{name}</div>
           <div className={styles.text}>{text}</div>

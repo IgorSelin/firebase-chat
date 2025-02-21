@@ -1,3 +1,5 @@
+To run this app locally, you need Node.js version 14 or higher.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

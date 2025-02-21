@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
-import { Button } from "antd";
-import TextArea from "antd/es/input/TextArea";
-import { PictureOutlined } from "@ant-design/icons";
+import { PictureOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import TextArea from 'antd/es/input/TextArea';
+import { useEffect, useState } from 'react';
+import styles from './styles.module.scss';
 
 interface ISender {
   sendMessage(value: string): void;
@@ -11,8 +11,8 @@ interface ISender {
 }
 
 const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
-  const [message, setMessage] = useState("");
-  const [imageAsFile, setImageAsFile] = useState("");
+  const [message, setMessage] = useState('');
+  const [imageAsFile, setImageAsFile] = useState('');
 
   const handleImageAsFile = (e: any) => {
     const image = e.target.files[0];
@@ -24,7 +24,7 @@ const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
       return;
     }
     sendMessage(message);
-    setMessage("");
+    setMessage('');
   };
 
   useEffect(() => {
@@ -35,23 +35,20 @@ const Sender = ({ sendMessage, getPhoto, photoLoading }: ISender) => {
 
   return (
     <form className={styles.sendContainer}>
-      <TextArea
-        onChange={({ target }) => setMessage(target.value)}
-        value={message}
-      />
+      <TextArea onChange={({ target }) => setMessage(target.value)} value={message} />
       <Button disabled={photoLoading} onClick={submitMessageHandler}>
         Send
       </Button>
-      <label htmlFor="upload-photo">
+      <label htmlFor='upload-photo'>
         <PictureOutlined className={styles.galleryIcon} />
       </label>
       <input
-        name="photo"
-        id="upload-photo"
-        accept="image/png, image/gif, image/jpeg"
+        name='photo'
+        id='upload-photo'
+        accept='image/png, image/gif, image/jpeg'
         className={styles.uploadPhoto}
         onChange={handleImageAsFile}
-        type="file"
+        type='file'
       />
     </form>
   );

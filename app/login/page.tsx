@@ -1,11 +1,12 @@
-"use client";
-import { useEffect } from "react";
-import styles from "./styles.module.scss";
-import { auth, signInWithGoogle } from "@/my-firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useRouter } from "next/navigation";
-import Paths from "@/constants/path";
-import { Button, Spin } from "antd";
+'use client';
+
+import Paths from '@/constants/path';
+import { auth, signInWithGoogle } from '@/my-firebase';
+import { Button, Spin } from 'antd';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import styles from './styles.module.scss';
 
 const LoginPage = () => {
   const [user, loading] = useAuthState(auth);

@@ -1,7 +1,8 @@
-"use client";
-import { useState } from "react";
-import styles from "./styles.module.scss";
-import BasicLoader from "../BasicLoader";
+'use client';
+
+import { useState } from 'react';
+import BasicLoader from '../BasicLoader';
+import styles from './styles.module.scss';
 
 interface TProps {
   src?: string;
@@ -17,12 +18,7 @@ const ImageLoader = ({ src }: TProps) => {
         </div>
       )}
       {src && (
-        <img
-          src={src}
-          alt="upload"
-          style={loading ? { display: "none" } : {}}
-          onLoad={() => setLoading(false)}
-        />
+        <img src={src} alt='upload' style={loading ? { display: 'none' } : {}} onLoad={() => setLoading(false)} />
       )}
     </div>
   );

@@ -1,21 +1,6 @@
-import { initializeApp } from "firebase/app";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
-} from "firebase/auth";
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-} from "firebase/firestore";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { initializeApp } from 'firebase/app';
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
 
 export const app = initializeApp({
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -33,13 +18,13 @@ export const db = getFirestore(app);
 export const signInWithGoogle = async () => {
   try {
     const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
-    const q = query(collection(db as any, "users"), where("uid", "==", user.uid));
+    const q = query(collection(db as any, 'users'), where('uid', '==', user.uid));
     const { docs } = await getDocs(q);
     if (docs.length === 0) {
-      await addDoc(collection(db as any, "users"), {
+      await addDoc(collection(db as any, 'users'), {
         uid: user.uid,
         name: user.displayName,
-        authProvider: "google",
+        authProvider: 'google',
         email: user.email,
         photo: user.photoURL,
       });
@@ -49,46 +34,7 @@ export const signInWithGoogle = async () => {
   }
 };
 
-export const logInWithEmailAndPassword = async (
-  email: string,
-  password: string,
-) => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 export const logout = () => signOut(auth);
-
-let messaging: ReturnType<typeof getMessaging> | null = null;
-
-if (typeof window !== "undefined") {
-  messaging = getMessaging(app);
-}
-export const getTokens = (setTokenFound: any) =>
-  getToken(messaging!, {
-    vapidKey:
-      process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY
-  })
-    .then((currentToken) => {
-      if (currentToken) {
-        console.log("current token for client: ", currentToken);
-        setTokenFound(true);
-      } else {
-        console.log(
-          "No registration token available. Request permission to generate one.",
-        );
-        setTokenFound(false);
-      }
-    })
-    .catch((err) => {
-      console.log("An error occurred while retrieving token. ", err);
-    });
-
-export const onMessageListener = () =>
-  new Promise((resolve) => onMessage(messaging!, (payload) => resolve(payload)));
 
 export const updateProfileImage = async (photo: string) => {
   await updateProfile(auth.currentUser!, {
