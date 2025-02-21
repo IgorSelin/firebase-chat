@@ -1,0 +1,48 @@
+.container {
+  margin-top: 60px;
+  margin-left: 20px;
+  .title {
+    font-size: 25px;
+  }
+  .usersContainer {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .userItem {
+      text-transform: uppercase;
+      max-width: max-content;
+      font-weight: 400;
+      border-bottom: 2px solid transparent;
+      transition: 0.2 linear all;
+      padding: 20px;
+      background: rgb(201, 200, 200);
+      max-width: 250px;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+      height: 80px;
+      box-sizing: border-box;
+
+      .avatar {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+      }
+
+      & > div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      &:hover {
+        border-bottom: 2px solid #000;
+        cursor: pointer;
+      }
+    }
+  }
+}

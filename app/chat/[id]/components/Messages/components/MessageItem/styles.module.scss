@@ -1,0 +1,97 @@
+.messageItem {
+  padding: 10px;
+  border: 1px solid #bababa;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-self: flex-start;
+  min-width: 80px;
+  gap: 10px;
+
+  .leftSection {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    .text {
+      word-break: break-word;
+    }
+
+    .avatar {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+  }
+
+  .photoContainer {
+    box-sizing: border-box;
+    border: 1px solid #bababa;
+    border-radius: 4px;
+    height: 200px;
+    width: 200px;
+
+    .fullSize {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      z-index: 10;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    img {
+      height: 200px;
+      width: 200px;
+      cursor: pointer;
+      object-fit: cover;
+    }
+  }
+
+  .fullSize {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    height: 100vh;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: 100%;
+      padding: 10px;
+      object-fit: contain;
+    }
+  }
+
+  .dateContainer {
+    display: flex;
+    gap: 10px;
+
+    .text {
+      word-break: break-word;
+    }
+  }
+
+  .ownerDate {
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
+
+.owner {
+  align-self: flex-end;
+}
+
+@media (max-width: 370px) {
+  .messageItem {
+    min-width: unset;
+    width: auto;
+    gap: 5px;
+  }
+}
